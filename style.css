@@ -1,0 +1,53 @@
+*{
+    margin: 0;
+}
+body{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color:#fafbfc ;
+}
+
+header{
+    background-color: rgb(194, 132, 109);
+    padding: 10px;
+    color: #fff;
+    text-align: center;
+    
+}
+main{
+    padding: 30px 50px;
+}
+.card{
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-top: 15px;
+    border-radius: 5px;
+
+
+}
+.lineInput{
+    display: grid;
+    margin-bottom: 10px;
+
+}
+
+input{
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    outline: 0;
+}
+button{
+    border: 0;
+    padding: 10px;
+    outline: 0;
+    background-color: rgb(194, 132, 109) ;
+    color: #fff;
+    border-radius: 3px;
+    font-weight: bold;
+    transition: all ease 0.3s ;
+
+}
+button:hover{
+   background-color:rgb(230, 144, 112) ; 
+}
