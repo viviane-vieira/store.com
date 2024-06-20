@@ -2,20 +2,23 @@ class Produto {
     constructor() {
         this.id = 1;
         this.arrayProdutos = [];
-
     }
+
     salvar() {
-       let produto = this.lerDados();
+        let produto = this.lerDados();
 
-       if(this.validaCampo(produto)) {
-          this.adicionar(produto);
-       }
-       this.listaTabela();
-      
+        if (this.validaCampo(produto)) {
+            this.adicionar(produto);
+            this.listaTabela();
+            this.limparCampos(); // Opcional: Limpar campos após salvar
+        }
     }
+
     listaTabela() {
-       let tbody = document.getElementById('tbody');  
-       for (let i = 0; i <this.arrayProdutos.length; i++) {//tr =linha da tabela //td = colunas da tabela
+        let tbody = document.getElementById('tbody');
+        tbody.innerHTML = ''; // Usando innerHTML para limpar o conteúdo
+
+        for (let i = 0; i < this.arrayProdutos.length; i++) {
             let tr = tbody.insertRow();
 
             let td_id = tr.insertCell();
@@ -30,58 +33,56 @@ class Produto {
             td_preco.innerText = this.arrayProdutos[i].preco;
             td_cor.innerText = this.arrayProdutos[i].cor;
             td_tamanho.innerText = this.arrayProdutos[i].tamanho;
-            td_tamanho.innerText = this.arrayProdutos[i].acoes
 
+        }        //  adicionar botões de ação 
+    }
 
-        
-        
-       }
+    adicionar(produto) {
+        this.arrayProdutos.push(produto);
+        this.id++;
     }
-    adicionar() {
-       this.arrayProdutos.push(produto);
-       this.id++;
-    }
+
     lerDados() {
-        let produto = {}
-        
-       produto.id = this.id;
-       produto.nomeProduto = document.getElementById('produto').value;
-       produto.cor = document.getElementById('cor').value;
-       produto.preco = document.getElementById('preco').value;
-       produto.tamanho = document.getElementById('tamanho').value;
-      
-
+        let produto = {
+            id: this.id,
+            nomeProduto: document.getElementById('produto').value,
+            cor: document.getElementById('cor').value,
+            preco: document.getElementById('preco').value,
+            tamanho: document.getElementById('tamanho').value
+        };
 
         return produto;
-
     }
+
     validaCampo(produto) {
-        let msg = ''
-        if(produto.nomeProduto == '') {
+        let msg = '';
+        if (produto.nomeProduto === '') {
             msg += '- Informe o Nome do Produto \n';
         }
-        if(produto.preco == '') {
+        if (produto.preco === '') {
             msg += '- Informe o Preço do Produto \n';
         }
-        if(produto.cor == '') {
+        if (produto.cor === '') {
             msg += '- Informe a Cor do Produto \n';
         }
-        if(produto.tamanho == '') {
+        if (produto.tamanho === '') {
             msg += '- Informe o tamanho do Produto \n';
         }
 
-        if (msg != '') {
+        if (msg !== '') {
             alert(msg);
-            return false
+            return false;
         }
-        return true
-
+        return true;
     }
 
-    
-    cancelar(){
-       
+    limparCampos() {
+        document.getElementById('produto').value = '';
+        document.getElementById('cor').value = '';
+        document.getElementById('preco').value = '';
+        document.getElementById('tamanho').value = '';
     }
 }
+
 
 const produto = new Produto();
