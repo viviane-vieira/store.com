@@ -10,7 +10,7 @@ class Produto {
         if (this.validaCampo(produto)) {
             this.adicionar(produto);
             this.listaTabela();
-            this.limparCampos(); // Opcional: Limpar campos após salvar
+            this.cancelar(); // Opcional: Limpar campos após salvar
         }
     }
 
@@ -34,7 +34,19 @@ class Produto {
             td_cor.innerText = this.arrayProdutos[i].cor;
             td_tamanho.innerText = this.arrayProdutos[i].tamanho;
 
-        }        //  adicionar botões de ação 
+            td_id.classList.add('center')
+
+             //  adicionar botões de ação 
+             let imgEdit = document.createElement('img');
+             imgEdit.src = 'img/edit.png';
+
+             let imgDelete = document.createElement('img');
+             imgDelete.src = 'img/excluir.png';
+
+
+             td_acoes.appendChild(imgEdit);
+             td_acoes.appendChild(imgDelete);
+        }       
     }
 
     adicionar(produto) {
@@ -76,10 +88,10 @@ class Produto {
         return true;
     }
 
-    limparCampos() {
+   cancelar() {
         document.getElementById('produto').value = '';
-        document.getElementById('cor').value = '';
         document.getElementById('preco').value = '';
+        document.getElementById('cor').value = '';
         document.getElementById('tamanho').value = '';
     }
 }
