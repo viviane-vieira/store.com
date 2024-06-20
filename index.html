@@ -18,24 +18,51 @@
      <main>
         <div class="title">
          <h2>Produtos</h2>
-         <span>Lista de produtos da minha Loja</span>
+         <span>Lista de Tenis Sportivos da minha Loja</span>
         </div>
 
         <div class="card">
             <div class="lineInput">
                 <label>Produto</label>
-                <input type="text"  id="valor" placeholder="Nome do Produto">
+                <input type="text"  id="produto" placeholder="Nome do Produto">
             </div>
 
             <div class="lineInput">
-                <label>Valor</label>
-                <input type="text"  id="produto" placeholder="Valor do Produto">
+                <label>Preço</label>
+                <input type="text"  id="preco" placeholder="Valor do Produto">
+            </div>
+
+            <div class="lineInput">
+                <label>Cor do Produto</label>
+                <input type="text"  id="cor" placeholder="Cor do Produto">
+            </div>
+            <div class="lineInput">
+                <label>Disponivéis</label>
+                <input type="text"  id="tamanho" placeholder="Tamanho">
             </div>
 
 
 
-            <button onclick="produto.adicionar()">Adicionar</button>
-            <button onclick="produto.deletar()">Excluir</button>
+            <button onclick="produto.salvar()">Salvar</button>
+            <button onclick="produto.cancelar()">Cancelar</button>
+        </div>
+        <div class="content">
+            <table border="1">
+                <th class="center">ID</th>
+                <th>Produto</th>
+                <th>Valor</th>
+                <th>Cor</th>
+                <th>Tamanhos</th>
+                <th class="center">Acões</th>
+            
+
+            <tbody id="tbody">
+                
+                           
+
+            </tbody>
+        </table>
+
         </div>
 
 
