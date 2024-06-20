@@ -10,7 +10,32 @@ class Produto {
        if(this.validaCampo(produto)) {
           this.adicionar(produto);
        }
-       console.log(this.arrayProdutos)
+       this.listaTabela();
+      
+    }
+    listaTabela() {
+       let tbody = document.getElementById('tbody');  
+       for (let i = 0; i <this.arrayProdutos.length; i++) {//tr =linha da tabela //td = colunas da tabela
+            let tr = tbody.insertRow();
+
+            let td_id = tr.insertCell();
+            let td_Produto = tr.insertCell();
+            let td_preco = tr.insertCell();
+            let td_cor = tr.insertCell();
+            let td_tamanho = tr.insertCell();
+            let td_acoes = tr.insertCell();
+
+            td_id.innerText = this.arrayProdutos[i].id;
+            td_Produto.innerText = this.arrayProdutos[i].nomeProduto;
+            td_preco.innerText = this.arrayProdutos[i].preco;
+            td_cor.innerText = this.arrayProdutos[i].cor;
+            td_tamanho.innerText = this.arrayProdutos[i].tamanho;
+            td_tamanho.innerText = this.arrayProdutos[i].acoes
+
+
+        
+        
+       }
     }
     adicionar() {
        this.arrayProdutos.push(produto);
