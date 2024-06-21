@@ -2,6 +2,7 @@ class Produto {
     constructor() {
         this.id = 1;
         this.arrayProdutos = [];
+        this.editId = null;
     }
 
     salvar() {
@@ -21,7 +22,7 @@ class Produto {
         for (let i = 0; i < this.arrayProdutos.length; i++) {
             let tr = tbody.insertRow();
 
-            let td_id = tr.insertCell();
+            let td_id = tr.insertCell();//colunas na tabela
             let td_Produto = tr.insertCell();
             let td_preco = tr.insertCell();
             let td_cor = tr.insertCell();
@@ -39,9 +40,11 @@ class Produto {
              //  adicionar botões de ação 
              let imgEdit = document.createElement('img');
              imgEdit.src = 'img/edit.png';
+             imgEdit.setAttribute("onclick", "produto.preparaEdicao("+ JSON.stringify(this.arrayProdutos[i])+")");
 
              let imgDelete = document.createElement('img');
              imgDelete.src = 'img/excluir.png';
+             imgDelete.setAttribute("onclick", "produto.deletar("+ this.arrayProdutos[i].id +")");
 
 
              td_acoes.appendChild(imgEdit);
@@ -52,6 +55,16 @@ class Produto {
     adicionar(produto) {
         this.arrayProdutos.push(produto);
         this.id++;
+    }
+    preparaEdicao(dados){
+        document.getElementById('produto').value = dados.nomeProduto;
+        document.getElementById('preco').value = dados.preco;
+        document.getElementById('cor').value = dados.cor;
+        document.getElementById('tamanho').value = dados.tamanho;
+        
+        //botao salvar com edição de atualizar
+        document.getElementById('btn1').innerText = 'Atualizar';
+
     }
 
     lerDados() {
@@ -94,6 +107,25 @@ class Produto {
         document.getElementById('cor').value = '';
         document.getElementById('tamanho').value = '';
     }
+
+    deletar(id) {
+
+        if(confirm('Deseja realmente deletar o produto do ID' + id)) {       
+        let tbody = document.getElementById('tbody');
+
+      for (let i = 0; i < this.arrayProdutos.length; i++) {
+          
+            if(this.arrayProdutos[i].id == id){
+                this.arrayProdutos.splice(i, 1);
+                tbody.deleteRow(i);
+
+            }
+      console.log(this.arrayProdutos);
+    }
+  }
+
+}    
+   
 }
 
 
