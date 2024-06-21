@@ -2,14 +2,21 @@ class Produto {
     constructor() {
         this.id = 1;
         this.arrayProdutos = [];
-        this.editId = null;
+        this.editId = null; //toda vez que esse valor tiver diferente de null quer dizer que estou fazendo uma edição
     }
 
     salvar() {
         let produto = this.lerDados();
 
         if (this.validaCampo(produto)) {
-            this.adicionar(produto);
+            if(this.editId == null){
+               this.adicionar(produto);
+            }else {
+                this.atualizar(this.editId, produto);
+
+            }
+
+         
             this.listaTabela();
             this.cancelar(); // Opcional: Limpar campos após salvar
         }
@@ -53,10 +60,26 @@ class Produto {
     }
 
     adicionar(produto) {
+        produto.preco = parseFloat(produto.preco);
         this.arrayProdutos.push(produto);
         this.id++;
     }
+    atualizar(id, produto){
+        for (let i = 0; i < this.arrayProdutos.length; i++) {
+            if(this.arrayProdutos[i].id == id) {
+                this.arrayProdutos[i].nomeProduto = produto.nomeProduto;
+                this.arrayProdutos[i].preco= produto.preco;
+                this.arrayProdutos[i].cor = produto.cor;
+                this.arrayProdutos[i].tamanho = produto.tamanho;
+            };
+            
+        }
+    }
+
+
     preparaEdicao(dados){
+        this.editId = dados.id;
+
         document.getElementById('produto').value = dados.nomeProduto;
         document.getElementById('preco').value = dados.preco;
         document.getElementById('cor').value = dados.cor;
@@ -106,8 +129,10 @@ class Produto {
         document.getElementById('preco').value = '';
         document.getElementById('cor').value = '';
         document.getElementById('tamanho').value = '';
-    }
-
+        
+        document.getElementById('btn1').value = "Salvar";
+        this.editId = null;
+   }
     deletar(id) {
 
         if(confirm('Deseja realmente deletar o produto do ID' + id)) {       
